@@ -1,0 +1,4 @@
+mkdir assistant-client
+cd assistant-client
+npm init -y
+npm i -D typescript @types/node jest @types/jest ts-jest prettier eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin husky lint-staged 
