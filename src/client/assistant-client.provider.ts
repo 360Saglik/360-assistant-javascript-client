@@ -1,14 +1,15 @@
 import axios, { AxiosInstance } from 'axios';
-import {
-  Patient,
-  ValidateToken,
-  ServerType,
-  AuthenticatePatientResponse,
-  ValidateTokenResponse,
-  ApiResponse,
-} from '../interface';
-import { Helpers } from '../util/helpers';
 
+import { Helpers } from '../util/helpers';
+import { ApiResponse, AuthenticatePatientResponse } from '../response';
+import { ServerType } from '../enum/server.type';
+import { ValidateTokenResponse } from '../response/validate-token.response';
+import { Patient, validatePatient } from '../model/patient';
+import { ValidateToken } from '../response/validate-token.response';
+
+/**
+ * Client class for making authenticated API requests to the Assistant service.
+ */
 export class AssistantClientProvider {
   private static readonly client: AxiosInstance = axios.create({
     timeout: 20000,
@@ -35,8 +36,14 @@ export class AssistantClientProvider {
     this.baseUrl = Helpers.getServerUrl(serverType);
   }
 
+  /**
+   * Authenticates a patient and returns an access token.
+   * @param patient The patient to authenticate. Check the patient model for more information.
+   * @returns A promise that resolves to the authenticate patient response.
+   */
   async authenticatePatientAsync(patient: Patient): Promise<AuthenticatePatientResponse> {
     if (!patient) throw new Error('patient cannot be null');
+    if (!validatePatient(patient)) throw new Error('patient is not valid');
 
     return this.sendRequestAsync<Patient, AuthenticatePatientResponse>(patient, 'auth/join');
   }

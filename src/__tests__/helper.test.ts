@@ -1,0 +1,47 @@
+import { Helpers } from '../util/helpers';
+import { ServerType } from '../enum/server.type';
+
+describe('Helpers', () => {
+  describe('getServerUrl', () => {
+    it('should return development URL when ServerType is Development', () => {
+      const url = Helpers.getServerUrl(ServerType.Development);
+      expect(url).toBe('https://integration-api-gateway.360saglik.dev');
+    });
+
+    it('should return production URL when ServerType is Production', () => {
+      const url = Helpers.getServerUrl(ServerType.Production);
+      expect(url).toBe('https://integration-api-gateway.360saglik.com');
+    });
+
+    it('should throw error for invalid server type', () => {
+      expect(() => {
+        Helpers.getServerUrl('invalid' as ServerType);
+      }).toThrow('Invalid server type');
+    });
+  });
+
+  describe('fromJsonToObject', () => {
+    it('should parse JSON and add status info', () => {
+      const result = Helpers.fromJsonToObject(
+        '{"name":"test"}',
+        200,
+        true
+      );
+      expect(result).toEqual({
+        name: 'test',
+        statusCode: 200,
+        success: true
+      });
+    });
+
+    it('should throw error for invalid JSON', () => {
+      expect(() => {
+        Helpers.fromJsonToObject(
+          'invalid json',
+          200,
+          true
+        );
+      }).toThrow('Failed to parse response');
+    });
+  });
+}); 

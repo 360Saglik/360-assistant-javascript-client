@@ -1,6 +1,14 @@
 import { ServerType } from '../enum/server.type';
 
+/**
+ * Helper class for various utility functions.
+ */
 export class Helpers {
+  /**
+   * Get the server URL based on the server type.
+   * @param serverType The server type to get the URL for.
+   * @returns The server URL.
+   */
   static getServerUrl(serverType: ServerType): string {
     switch (serverType) {
       case ServerType.Development:
@@ -12,6 +20,13 @@ export class Helpers {
     }
   }
 
+  /**
+   * Convert a JSON string to an object.
+   * @param responseContent The JSON string to convert.
+   * @param statusCode The status code of the response.
+   * @param isSuccessStatusCode Whether the status code is a success status code.
+   * @returns The object.
+   */
   static fromJsonToObject<T>(
     responseContent: string,
     statusCode: number,

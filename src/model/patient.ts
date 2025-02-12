@@ -1,5 +1,6 @@
 import { Policy } from '../model/policy';
-import { GenderType } from '../../enum/gender.type';
+import { GenderType } from '../enum/gender.type';
+
 /**
  * Represents a patient in the assistants app.
  */
