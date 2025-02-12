@@ -1,4 +1,3 @@
-
 /**
  * Enum representing different gender types.
  */

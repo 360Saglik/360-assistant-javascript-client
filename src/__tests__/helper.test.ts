@@ -22,26 +22,18 @@ describe('Helpers', () => {
 
   describe('fromJsonToObject', () => {
     it('should parse JSON and add status info', () => {
-      const result = Helpers.fromJsonToObject(
-        '{"name":"test"}',
-        200,
-        true
-      );
+      const result = Helpers.fromJsonToObject('{"name":"test"}', 200, true);
       expect(result).toEqual({
         name: 'test',
         statusCode: 200,
-        success: true
+        success: true,
       });
     });
 
     it('should throw error for invalid JSON', () => {
       expect(() => {
-        Helpers.fromJsonToObject(
-          'invalid json',
-          200,
-          true
-        );
+        Helpers.fromJsonToObject('invalid json', 200, true);
       }).toThrow('Failed to parse response');
     });
   });
-}); 
+});

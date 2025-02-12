@@ -72,4 +72,4 @@ export class PatientBuilder {
   build(): Patient {
     return this.patient as Patient;
   }
-} 
+}
