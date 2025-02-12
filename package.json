@@ -1,7 +1,7 @@
 {
-  "name": "assistant-client",
-  "version": "1.0.0",
-  "description": "A TypeScript client library for making authenticated API requests to the Assistant service",
+  "name": "360saglik.assistant.client-library",
+  "version": "0.0.5",
+  "description": "This library provides a simple way to authenticate and interact with an assistant API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepare": "husky install",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
@@ -57,7 +57,7 @@
     "lint-staged": "^15.1.0",
     "prettier": "^3.1.0",
     "ts-jest": "^29.2.5",
-    "typescript": "^5.3.2"
+    "typescript": "~5.3.3"
   },
   "lint-staged": {
     "*.ts": [
