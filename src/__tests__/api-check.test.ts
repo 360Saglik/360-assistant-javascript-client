@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { AssistantClientProvider } from '../client/assistant-client.provider';
 import { PatientBuilder } from '../builder/patient.builder';
 import { PolicyBuilder } from '../builder/policy.builder';
@@ -5,6 +6,7 @@ import { ServerType, GenderType } from '../enum';
 import { Patient } from '../model/patient';
 import { Policy } from '../model/policy';
 import { ValidateToken } from '../response/validate-token.response';
+
 describe('API Check Tests', () => {
   const CLIENT_ID = 'client_id';
   const CLIENT_SECRET = 'client_secret';
@@ -16,7 +18,7 @@ describe('API Check Tests', () => {
 
   beforeEach(() => {
     policyInstance = PolicyBuilder.create()
-      .withId(crypto.randomUUID())
+      .withId(randomUUID())
       .withPolicyNumber('12345678901')
       .withStartDate(new Date())
       .withEndDate(new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)) // 1 year from now
@@ -25,7 +27,7 @@ describe('API Check Tests', () => {
       .build();
 
     patientInstance = PatientBuilder.create()
-      .withId(crypto.randomUUID())
+      .withId(randomUUID())
       .withGsmCountryCode('+90')
       .withGsm('5551231234')
       .withFirstName('Richard')
@@ -49,7 +51,9 @@ describe('API Check Tests', () => {
     expect(auth.data.accessToken).toBeTruthy();
     expect(auth.data.accessTokenExpiredTime).toBeDefined();
     expect(new Date(auth.data.accessTokenExpiredTime!)).toBeInstanceOf(Date);
-    expect(new Date(auth.data.accessTokenExpiredTime!).getTime()).toBeGreaterThan(new Date().getTime());
+    expect(new Date(auth.data.accessTokenExpiredTime!).getTime()).toBeGreaterThan(
+      new Date().getTime(),
+    );
     expect(auth.data.redirectUrl).toBeTruthy();
     expect(auth.actions).toBeDefined();
     expect(auth.message).toBe('success');
