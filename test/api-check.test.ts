@@ -5,8 +5,8 @@ import { Patient, Policy } from '../src/interface';
 import { ValidateToken } from '../src/response';
 
 describe('API Check Tests', () => {
-  const CLIENT_ID = 'b2318dc3-c5c6-490a-add3-10bd15cd1aa9';
-  const CLIENT_SECRET = '8zXLVIREJ1noR1PXBN63F1xXwDlfRmdvNzwLseys1dabm6DmuCCVvc9HOskfZ1Q2';
+  const CLIENT_ID = 'client_id';
+  const CLIENT_SECRET = 'secret_key';
   const ENV = ServerEnum.Development;
 
   let client: AssistantClient;
