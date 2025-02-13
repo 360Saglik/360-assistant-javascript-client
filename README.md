@@ -42,7 +42,7 @@ async function main() {
   const client: AssistantClient = new AssistantClient({
     clientId: 'Your Client ID',
     secretKey: 'Your Secret Key',
-    serverType: ServerEnum.Development // or ServerEnum.Production,
+    serverType: ServerType.Development // or ServerEnum.Production,
   });
   
   const policyInstance: Policy = {
@@ -65,7 +65,7 @@ async function main() {
     passportNumber: '12345678901',
     policy: policyInstance,
     birthDate: new Date('1988-06-25'),
-    gender: GenderEnum.Male,
+    gender: GenderType.Male,
   };
   
   const auth = await client.authenticatePatient(patient);
