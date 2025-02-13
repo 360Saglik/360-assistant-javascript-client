@@ -1,6 +1,6 @@
 {
   "name": "@saglik360/assistant-client-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This library provides a simple way to authenticate and interact with an assistant API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/360Saglik/360-assistant-typescript-client#readme",
   "dependencies": {
-    "axios": "^1.6.2",
+    "axios": "^1.7.9",
     "package-lock.json": "^1.0.0"
   },
   "devDependencies": {

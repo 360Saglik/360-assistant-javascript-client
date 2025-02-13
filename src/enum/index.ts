@@ -1,4 +1,4 @@
-import { GenderType } from './gender.type';
-import { ServerType } from './server.type';
+import { GenderEnum } from './gender.enum';
+import { ServerEnum } from './server.enum';
 
-export { GenderType, ServerType };
+export { GenderEnum, ServerEnum };

@@ -1,4 +1,4 @@
-import { ServerType } from '../enum/server.type';
+import { ServerEnum } from '../enum';
 
 /**
  * Helper class for various utility functions.
@@ -9,11 +9,11 @@ export class Helpers {
    * @param serverType The server type to get the URL for.
    * @returns The server URL.
    */
-  static getServerUrl(serverType: ServerType): string {
+  static getServerUrl(serverType: ServerEnum): string {
     switch (serverType) {
-      case ServerType.Development:
+      case ServerEnum.Development:
         return 'https://integration-api-gateway.360saglik.dev';
-      case ServerType.Production:
+      case ServerEnum.Production:
         return 'https://integration-api-gateway.360saglik.com';
       default:
         throw new Error('Invalid server type');
@@ -27,11 +27,7 @@ export class Helpers {
    * @param isSuccessStatusCode Whether the status code is a success status code.
    * @returns The object.
    */
-  static fromJsonToObject<T>(
-    responseContent: string,
-    statusCode: number,
-    isSuccessStatusCode: boolean,
-  ): T {
+  static fromJsonToObject<T>(responseContent: string, statusCode: number, isSuccessStatusCode: boolean): T {
     try {
       const response = JSON.parse(responseContent) as T;
       return {

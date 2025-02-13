@@ -1,5 +1,5 @@
-import { Policy } from '../model/policy';
-import { GenderType } from '../enum/gender.type';
+import { Policy } from './index';
+import { GenderEnum } from '../enum';
 
 /**
  * Represents a patient in the assistants app.
@@ -62,28 +62,5 @@ export interface Patient {
    * Patient's gender, represented by an integer value.
    * Example: 1 for Male, 2 for Female, 3 for Unknown.
    */
-  gender: GenderType;
+  gender: GenderEnum;
 }
-
-// Validation helper functions
-export const validatePatient = (patient: Patient): boolean => {
-  // GSM country code validation
-  const gsmCountryCodeRegex = /^\+[0-9]{1,3}$/;
-  if (patient.gsmCountryCode && !gsmCountryCodeRegex.test(patient.gsmCountryCode)) {
-    throw new Error('Invalid GSM country code format');
-  }
-
-  // Country code validation
-  const countryCodeRegex = /^[A-Z]{3}$/;
-  if (!countryCodeRegex.test(patient.countryCode)) {
-    throw new Error('Invalid country code format');
-  }
-
-  // National ID validation
-  const nationalIdRegex = /^[0-9]{11}$/;
-  if (patient.nationalId && !nationalIdRegex.test(patient.nationalId)) {
-    throw new Error('Invalid national ID format');
-  }
-
-  return true;
-};
