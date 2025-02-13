@@ -1,21 +1,21 @@
 import { Helpers } from '../src/util';
-import { ServerEnum } from '../src/enum';
+import { ServerType } from '../src/enum';
 
 describe('Helpers', () => {
   describe('getServerUrl', () => {
     it('should return development URL when ServerType is Development', () => {
-      const url = Helpers.getServerUrl(ServerEnum.Development);
+      const url = Helpers.getServerUrl(ServerType.Development);
       expect(url).toBe('https://integration-api-gateway.360saglik.dev');
     });
 
     it('should return production URL when ServerType is Production', () => {
-      const url = Helpers.getServerUrl(ServerEnum.Production);
+      const url = Helpers.getServerUrl(ServerType.Production);
       expect(url).toBe('https://integration-api-gateway.360saglik.com');
     });
 
     it('should throw error for invalid server type', () => {
       expect(() => {
-        Helpers.getServerUrl('invalid' as ServerEnum);
+        Helpers.getServerUrl('invalid' as ServerType);
       }).toThrow('Invalid server type');
     });
   });

@@ -1,7 +1,7 @@
 /**
  * Enum representing different server types.
  */
-export enum ServerEnum {
+export enum ServerType {
   Development = 'development',
   Production = 'production',
 }

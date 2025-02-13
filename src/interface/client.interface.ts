@@ -1,4 +1,4 @@
-import { ServerEnum } from '../enum';
+import { ServerType } from '../enum';
 
 export interface Client {
   /**
@@ -15,8 +15,8 @@ export interface Client {
 
   /**
    * Server type for the client.
-   * @default ServerEnum.Development
-   * @example ServerEnum.Development
+   * @default ServerType.Development
+   * @example ServerType.Development
    */
-  serverType?: ServerEnum;
+  serverType?: ServerType;
 }

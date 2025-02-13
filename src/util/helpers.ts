@@ -1,4 +1,4 @@
-import { ServerEnum } from '../enum';
+import { ServerType } from '../enum';
 
 /**
  * Helper class for various utility functions.
@@ -9,11 +9,11 @@ export class Helpers {
    * @param serverType The server type to get the URL for.
    * @returns The server URL.
    */
-  static getServerUrl(serverType: ServerEnum): string {
+  static getServerUrl(serverType: ServerType): string {
     switch (serverType) {
-      case ServerEnum.Development:
+      case ServerType.Development:
         return 'https://integration-api-gateway.360saglik.dev';
-      case ServerEnum.Production:
+      case ServerType.Production:
         return 'https://integration-api-gateway.360saglik.com';
       default:
         throw new Error('Invalid server type');

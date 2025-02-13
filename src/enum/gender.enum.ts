@@ -1,7 +1,7 @@
 /**
  * Enum representing different gender types.
  */
-export enum GenderEnum {
+export enum GenderType {
   Male = 1,
   Female = 2,
   Unknown = 3,

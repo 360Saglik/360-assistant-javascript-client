@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { GenderEnum, ServerEnum } from '../src/enum';
+import { GenderType, ServerType } from '../src/enum';
 import { AssistantClient } from '../src';
 import { Patient, Policy } from '../src/interface';
 import { ValidateToken } from '../src/response';
@@ -7,7 +7,7 @@ import { ValidateToken } from '../src/response';
 describe('API Check Tests', () => {
   const CLIENT_ID = 'client_id';
   const CLIENT_SECRET = 'secret_key';
-  const ENV = ServerEnum.Development;
+  const ENV = ServerType.Development;
 
   let client: AssistantClient;
   let policyInstance: Policy;
@@ -33,7 +33,7 @@ describe('API Check Tests', () => {
       passportNumber: '12345678901',
       policy: policyInstance,
       birthDate: new Date('1988-06-25'),
-      gender: GenderEnum.Male,
+      gender: GenderType.Male,
     };
     client = new AssistantClient({
       clientId: CLIENT_ID,

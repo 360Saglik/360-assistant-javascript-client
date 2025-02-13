@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 
 import { Helpers, Validators } from '../util';
 import { ApiResponse, AuthenticatePatientResponse, ValidateTokenResponse, ValidateToken } from '../response';
-import { ServerEnum } from '../enum';
+import { ServerType } from '../enum';
 import { Patient, Client } from '../interface';
 
 /**
@@ -24,7 +24,7 @@ export class AssistantClient {
     let { serverType } = params;
     if (!clientId) throw new Error('clientId cannot be null');
     if (!secretKey) throw new Error('secretKey cannot be null');
-    serverType = serverType || ServerEnum.Development;
+    serverType = serverType || ServerType.Development;
     this.client = axios.create({
       timeout: this.timeout,
       maxRedirects: this.maxRedirects,
