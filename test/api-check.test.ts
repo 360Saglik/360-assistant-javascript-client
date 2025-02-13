@@ -50,9 +50,7 @@ describe('API Check Tests', () => {
     expect(auth.data.accessToken).toBeTruthy();
     expect(auth.data.accessTokenExpiredTime).toBeDefined();
     expect(new Date(auth.data.accessTokenExpiredTime!)).toBeInstanceOf(Date);
-    expect(new Date(auth.data.accessTokenExpiredTime!).getTime()).toBeGreaterThan(
-      new Date().getTime(),
-    );
+    expect(new Date(auth.data.accessTokenExpiredTime!).getTime()).toBeGreaterThan(new Date().getTime());
     expect(auth.data.redirectUrl).toBeTruthy();
     expect(auth.actions).toBeDefined();
     expect(auth.message).toBe('success');
