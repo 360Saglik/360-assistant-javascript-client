@@ -42,7 +42,7 @@ async function main() {
   const client: AssistantClient = new AssistantClient({
     clientId: 'Your Client ID',
     secretKey: 'Your Secret Key',
-    serverType: ServerType.Development // or ServerEnum.Production,
+    serverType: ServerType.Development // or ServerType.Production,
   });
   
   const policyInstance: Policy = {
