@@ -1,9 +1,15 @@
 import axios, { AxiosInstance } from 'axios';
-
 import { Helpers, Validators } from '../util';
-import { ApiResponse, AuthenticatePatientResponse, ValidateTokenResponse, ValidateToken } from '../response';
+import {
+  ApiResponse,
+  AuthenticatePatientResponse,
+  ValidateTokenResponse,
+  ValidateToken,
+  PreInstantDoctorOrderResponse,
+  PostInstantDoctorOrderResponse,
+} from '../response';
 import { ServerType } from '../enum';
-import { Patient, Client } from '../interface';
+import { Patient, Client, PostInstantDoctorOrder, PreInstantDoctorOrder } from '../interface';
 
 /**
  * Client class for making authenticated API requests to the Assistant service.
@@ -53,14 +59,33 @@ export class AssistantClient {
     return this.sendRequest<ValidateToken, ValidateTokenResponse>(token, 'auth/validate');
   }
 
-  private async sendRequest<TRequest, TResponse extends ApiResponse>(model: TRequest, endpoint: string): Promise<TResponse> {
+  async preInstantDoctorOrder(params: PreInstantDoctorOrder): Promise<PreInstantDoctorOrderResponse> {
+    if (!params) throw new Error('params cannot be null');
+    const { token } = params;
+    return this.sendRequest<any, PreInstantDoctorOrderResponse>({}, 'orders/pre-order/instant-doctor', { Authorization: `Bearer ${token}` });
+  }
+
+  async postInstantDoctorOrder(params: PostInstantDoctorOrder): Promise<PostInstantDoctorOrderResponse> {
+    if (!params) throw new Error('params cannot be null');
+
+    Validators.postInstantDoctorOrder(params);
+    const { orderId, token } = params;
+    return this.sendRequest<any, PostInstantDoctorOrderResponse>({}, `orders/${orderId}/post-order/instant-doctor`, { Authorization: `Bearer ${token}` });
+  }
+
+  private async sendRequest<TRequest, TResponse extends ApiResponse>(
+    model: TRequest = {} as TRequest,
+    endpoint: string,
+    additionalHeaders?: Record<string, string>,
+  ): Promise<TResponse> {
     try {
-      const response = await this.client.post<TResponse>(`${this.baseUrl}/${endpoint}`, model, {
-        headers: {
-          'client-id': this.clientId,
-          'secret-key': this.secretKey,
-        },
-      });
+      const headers = {
+        'client-id': this.clientId,
+        'secret-key': this.secretKey,
+        ...additionalHeaders,
+      };
+
+      const response = await this.client.post<TResponse>(`${this.baseUrl}/${endpoint}`, model, { headers });
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
