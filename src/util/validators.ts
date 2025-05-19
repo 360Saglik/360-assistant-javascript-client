@@ -1,4 +1,5 @@
-import { Patient } from '../interface';
+import { Patient, PostInstantDoctorOrder } from '../interface';
+import { isMongoId } from 'class-validator';
 
 /**
  * Validator class for various validation functions.
@@ -77,6 +78,14 @@ export class Validators {
     }
     if (nationalId) {
       Validators.nationalId(nationalId);
+    }
+    return true;
+  }
+
+  static postInstantDoctorOrder(params: PostInstantDoctorOrder): boolean {
+    const { orderId } = params;
+    if (!isMongoId(orderId)) {
+      throw new Error('orderId must be a valid MongoId');
     }
     return true;
   }
